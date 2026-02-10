@@ -134,7 +134,7 @@ function App() {
               <span style={{ animationDelay: '0.4s' }}>Jaanu ❤️</span>
               <span style={{ animationDelay: '1.1s' }}>you would be</span>
               <span style={{ animationDelay: '1.9s' }}>Forever</span>
-              <span style={{ animationDelay: '2.7s' }}>💕</span>
+              <span style={{ animationDelay: '2.7s' }}>my 💕</span>
             </div>
           </div>
 
