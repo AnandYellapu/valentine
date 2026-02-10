@@ -1,0 +1,277 @@
+/* ========== ROOT THEME ========== */
+:root {
+  --pink1: #ff4e88;
+  --pink2: #ff7eb3;
+  --bg1: #fa6e73;
+  --bg2: #f07e5f;
+  --glass: rgba(255, 255, 255, 0.15);
+  --blur: blur(18px);
+}
+
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: linear-gradient(-45deg, var(--bg1), var(--bg2), #f179f1, #f0a57a);
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  color: white;
+  padding: 20px;
+  z-index: 1;
+}
+
+.container h1 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  margin-bottom: 40px;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  animation: floatTitle 4s ease-in-out infinite alternate;
+}
+
+/* ========== BUTTONS WRAPPER ========== */
+.buttons-wrapper {
+  display: flex;
+  gap: 35px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========== BUTTON BASE ========== */
+button {
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  z-index: 11;
+  backdrop-filter: var(--blur);
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+/* Ripple light sweep */
+button::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+button:hover::before {
+  transform: translateX(100%);
+}
+
+/* YES BUTTON */
+.yes-btn {
+  background: linear-gradient(135deg, var(--pink1), var(--pink2));
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 78, 136, 0.6);
+}
+
+.yes-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 45px rgba(255, 78, 136, 0.9);
+}
+
+/* Pulsing glow */
+.yes-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  box-shadow: 0 0 25px rgba(255, 78, 136, 0.6);
+  animation: pulseGlow 2s infinite;
+}
+
+/* NO BUTTON */
+.no-btn {
+  background: var(--glass);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.no-btn:hover {
+  transform: scale(1.05);
+}
+
+.no-btn.uncatchable {
+  animation: shake 0.4s ease;
+}
+
+/* Hint */
+.hint {
+  color: black;
+  margin-top: 40px;
+  font-size: 1rem;
+  opacity: 0.85;
+  max-width: 420px;
+}
+
+/* ========== BACKGROUND HEARTS ========== */
+.background-hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-heart {
+  position: absolute;
+  bottom: -50px;
+  font-size: 24px;
+  opacity: 0.35;
+  animation: rise 14s linear infinite;
+  filter: blur(1px);
+}
+
+/* ========== YES SCREEN ========== */
+.yes-fullscreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-45deg, #ff758c, #ff7eb3, #f77df7, #f3a87d);
+  background-size: 400% 400%;
+  animation: gradientFlow 10s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+/* Message Box */
+.message-box {
+  position: relative;
+  z-index: 5;
+  background: var(--glass);
+  padding: 50px 70px;
+  border-radius: 30px;
+  backdrop-filter: var(--blur);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: popIn 0.9s cubic-bezier(.17,.67,.3,1.33);
+}
+
+.message-box h1 {
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 25px rgba(255,255,255,0.6);
+}
+
+/* Floating Words */
+.floating-words span {
+  display: inline-block;
+  margin: 12px;
+  font-weight: bold;
+  animation: floatWords 3s ease-in-out infinite;
+}
+
+/* ========== HEART RAIN ========== */
+.hearts-container,
+.sparkles {
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  top: -10vh;
+  font-size: 22px;
+  animation: fall linear infinite;
+}
+
+/* Sparkles */
+.sparkle {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes rise {
+  from { transform: translateY(0) scale(1); opacity: 0.4; }
+  to   { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+}
+
+@keyframes fall {
+  from { transform: translateY(0) rotate(0deg); }
+  to   { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes sparkleTwinkle {
+  0%,100% { transform: scale(0.5); opacity: 0.3; }
+  50%     { transform: scale(1.4); opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes floatWords {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-12px); }
+}
+
+@keyframes floatTitle {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-14px); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 600px) {
+  .buttons-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .message-box {
+    padding: 30px;
+  }
+
+  .message-box h1 {
+    font-size: 2.3rem;
+  }
+}
